@@ -1,0 +1,12 @@
+﻿@model CleanCoding.Models.Comment
+
+<div class="comment" style="background-color: #6b6969; color: #c8c7e4; margin: 0px 0px -15px 0px">
+    <h2>@Model.UserID UserName</h2>
+    <hr />
+    <p>@Model.Message</p>
+    <hr />
+    <p>
+         | @Html.ActionLink("Delete", "Delete", "Comment", new { id = @Model.ID }, null) |
+           @Html.ActionLink("Edit", "Edit", "Comment", new { id = @Model.ID }, null) |
+    </p>
+</div>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CleanCoding.Models.ArticleListViewModel>
+
+<h1>Articles</h1>
+
+<form method="get">
+    <input type="search" name="searchTerm"/>
+    <input type="submit" value ="Search Articles" />
+</form>
+
+@foreach (var item in Model) 
+{
+    @Html.Partial("_ArticlePartial", item);
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

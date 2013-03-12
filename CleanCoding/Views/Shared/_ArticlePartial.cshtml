@@ -1,0 +1,27 @@
+﻿@model CleanCoding.Models.ArticleListViewModel
+
+<div class="article">
+    <h2>@Model.Title</h2>
+    <hr />
+    <p>@Model.Body</p>
+    <h6 style="color: #f00">Comments: @Model.CommentCount</h6>
+
+    @*<p>@Model.Body.Substring(0, @Model.Body.IndexOf(Environment.NewLine))</p>*@
+
+
+    @*Display Links based on if an admin or not*@
+    @if (Roles.IsUserInRole("Administrator"))
+    {
+        <p>
+            | @Html.ActionLink("Delete", "Delete", new { id = @Model.ArticleID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = @Model.ArticleID }) |
+            @Html.ActionLink("Read More...", "ArticleFull", new {id = @Model.ArticleID}) |
+        </p>   
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Read More...", "ArticleFull", new {id = @Model.ArticleID})
+        </p>        
+    }
+</div>

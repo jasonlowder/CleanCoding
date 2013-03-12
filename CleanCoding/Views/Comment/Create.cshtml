@@ -1,0 +1,42 @@
+﻿@model CleanCoding.Models.Comment
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Comment</legend>
+
+        @Html.HiddenFor(model => model.ArticleID)
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.UserID)
+      
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Message)
+            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "ArticleFull", "Article", new { id = Model.ArticleID}, null)
+</div>*@
+
+@section Scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

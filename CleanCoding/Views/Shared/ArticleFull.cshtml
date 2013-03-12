@@ -1,0 +1,75 @@
+﻿@model CleanCoding.Models.Article
+
+<div class="articleFull" style="background-color: #b48f8f">
+    <fieldset>
+        <legend>ArticlesModel</legend>
+        @Html.HiddenFor(model => model.ArticleID)
+        <div class="display-field">
+            <h1>@Html.DisplayFor(model => model.Title)</h1>
+        </div>
+       <hr />
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Body)
+        </div>
+    </fieldset>
+
+    @{        
+        CleanCoding.Models.CleanCodingDB db = new CleanCoding.Models.CleanCodingDB();
+
+        var list =
+                db.Comments
+                .OrderBy(r => r.ID)
+                .Where(r => r.ArticleID == Model.ArticleID)
+                .Take(10);
+        
+        //var list =
+        //        db.Comments
+        //        .OrderBy(r => r.ID)
+        //        .Where(r => r.ArticleID == Model.ArticleID)
+        //        .Take(10)
+        //        .Select(r => new CleanCoding.Models.Comment
+        //        {
+        //            ArticleID = r.ArticleID,
+        //            UserID = r.UserID,
+        //            ID = r.ID,
+        //            Message = r.Message
+        //        });
+    }
+    <hr />
+    @foreach (var item in list) 
+    {
+        @Html.Partial("_CommentPartial", item);
+
+    }
+
+    @*Display Links based on if an admin or not*@
+@*    @if (Roles.IsUserInRole("Administrator"))
+    {
+        <p>
+        @Html.ActionLink("Comment", "Comment", "Comment");
+        @Html.ActionLink("Edit", "Edit", new { id=Model.ArticleID }) |            
+        @Html.ActionLink("Delete", "Delete", new { id=Model.ArticleID }) |
+        @Html.ActionLink("Back to List", "Index")
+        </p>   
+    }
+    else
+    {
+        if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <p>
+            @Html.ActionLink("Comment", "Comment", "Create");
+            </p>
+        }
+        else
+        {
+            <p>You must be logged in to comment.</p>
+        }
+            
+    }*@
+    <p>
+        @Html.ActionLink("Comment", "Create", "Comment");
+        @Html.ActionLink("Edit", "Edit", new { id=Model.ArticleID }) |            
+        @Html.ActionLink("Delete", "Delete", new { id=Model.ArticleID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p> 
+</div>
