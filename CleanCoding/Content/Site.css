@@ -754,3 +754,11 @@ tr.pager td {
             margin: 0;
         }
 }
+
+.articleFull {
+    background-color: #FFFFFF;
+    border-style: groove;
+    border-width: thin;
+    margin: 0px;
+    padding: 15px;
+}

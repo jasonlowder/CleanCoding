@@ -1,13 +1,13 @@
 ﻿@model CleanCoding.Models.Article
 
-<div class="articleFull" style="background-color: #b48f8f">
+<div class="articleFull" >
     <fieldset>
         <legend>ArticlesModel</legend>
         @Html.HiddenFor(model => model.ArticleID)
         <div class="display-field">
-            <h1>@Html.DisplayFor(model => model.Title)</h1>
+            <h2 style="text-align:center">@Html.DisplayFor(model => model.Title)</h2>
         </div>
-       <hr />
+       <br />
         <div class="display-field">
             @Html.DisplayFor(model => model.Body)
         </div>
