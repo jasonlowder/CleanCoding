@@ -1,15 +1,15 @@
 ﻿html {
-    background-color: #e2e2e2;
+    background-color: #000000;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #fff;
+    background-color: #FFFFFF;
     border-top: solid 10px #000;
-    color: #333;
-    font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #3B3B3B;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -60,9 +60,13 @@ mark {
 
 h1, h2, h3,
 h4, h5, h6 {
-    color: #000;
-    margin-bottom: 0;
-    padding-bottom: 0;
+margin: 0px;
+	padding: 0px;
+	letter-spacing: -2px;
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: normal;
+	color: #107710;
 }
 
 h1 {
@@ -70,11 +74,11 @@ h1 {
 }
 
 h2 {
-    font-size: 1.75em;
+    font-size: 2.4em;
 }
 
 h3 {
-    font-size: 1.2em;
+    font-size: 1.6em;
 }
 
 h4 {
@@ -130,7 +134,7 @@ footer {
 ----------------------------------------------------------*/
 .site-title {
     color: #c8c8c8;
-    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-family: 'Open Sans', sans-serif;
     font-size: 2.3em;
     margin: 0;
 }
