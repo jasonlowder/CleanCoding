@@ -113,11 +113,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Article.cs" />
+    <Compile Include="Data\ArticleDataFetcher.cs" />
+    <Compile Include="Data\Auth.cs" />
+    <Compile Include="Data\UnitTest1.cs" />
+    <Compile Include="Factory\ArticleDataFetcherFactory.cs" />
+    <Compile Include="Factory\AuthDataFetcherFactory.cs" />
+    <Compile Include="Factory\Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="UserResults.html" />
+    <Content Include="UserResults.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -128,6 +137,7 @@
       <Name>CleanCoding</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
