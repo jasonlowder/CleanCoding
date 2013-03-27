@@ -11,5 +11,6 @@ namespace CleanCoding.Models
         public String Title { get; set; }
         public String Body { get; set; }
         public int CommentCount { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

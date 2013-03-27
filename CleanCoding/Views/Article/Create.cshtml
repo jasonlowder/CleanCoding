@@ -1,4 +1,4 @@
-﻿@model CleanCoding.Models.Article
+﻿@model CleanCoding.Models.ArticleListViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -25,8 +25,16 @@
             @Html.LabelFor(model => model.Body)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Body)
+            @Html.TextAreaFor(model => model.Body)
             @Html.ValidationMessageFor(model => model.Body)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tags)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Tags)
+            @Html.ValidationMessageFor(model => model.Tags)
         </div>
 
         <p>

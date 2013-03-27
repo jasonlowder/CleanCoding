@@ -230,6 +230,7 @@
     <Compile Include="Models\ArticleListViewModel.cs" />
     <Compile Include="Models\CleanCodingDB.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
