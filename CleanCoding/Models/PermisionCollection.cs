@@ -5,7 +5,10 @@ using System.Web;
 
 namespace CleanCoding.Models
 {
-    public class PermisionCollection
+    public class PermisionCollection : List<Permision>
     {
+        public PermisionCollection()
+        {
+        }
     }
 }

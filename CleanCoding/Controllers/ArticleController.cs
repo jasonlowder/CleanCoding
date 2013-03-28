@@ -27,7 +27,7 @@ namespace CleanCoding.Controllers
         public ActionResult Index(String searchTerm = null)
         {
             var model =
-                db.Query<Article>()
+                db.Articles
                     .OrderBy(r => r.ArticleID)
                     .Where(r => searchTerm == null || r.Title.StartsWith(searchTerm))
                     .Take(10)
@@ -44,7 +44,7 @@ namespace CleanCoding.Controllers
 
         public ActionResult ArticleFull(int id)
         {
-            var article = db.Query<Article>()
+            var article = db.Articles
                 .Where(r => r.ArticleID == id)
                 .Select(r => new ArticleListViewModel
                 {
@@ -65,23 +65,23 @@ namespace CleanCoding.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(Article article)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Articles.Add(article);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult create(Article article)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Articles.Add(article);
+                db.SaveChanges();
+                return RedirectToAction("index");
+            }
 
-        //    return View(article);
-        //}
+            return View(article);
+        }
 
         public ActionResult Edit(int id = 0)
         {
-            var article = db.Query<Article>()
+            var article = db.Articles
                 .Where(r => r.ArticleID == id)
                 .Select(r => new ArticleListViewModel
                 {
@@ -97,47 +97,47 @@ namespace CleanCoding.Controllers
             return View(article);
         }
 
-        ////
-        //// POST: /Article/Edit/5
+        //
+        // POST: /Article/Edit/5
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(Article article)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(article).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(article);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Article article)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(article).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(article);
+        }
 
-        ////
-        //// GET: /Article/Delete/5
+        //
+        // GET: /Article/Delete/5
 
-        //public ActionResult Delete(int id = 0)
-        //{
-        //    Article article = db.Articles.Find(id);
-        //    if (article == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(article);
-        //}
+        public ActionResult Delete(int id = 0)
+        {
+            Article article = db.Articles.Find(id);
+            if (article == null)
+            {
+                return HttpNotFound();
+            }
+            return View(article);
+        }
 
-        ////
-        //// POST: /Article/Delete/5
+        //
+        // POST: /Article/Delete/5
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Article article = db.Articles.Find(id);
-        //    db.Articles.Remove(article);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Article article = db.Articles.Find(id);
+            db.Articles.Remove(article);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

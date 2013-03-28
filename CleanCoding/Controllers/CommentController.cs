@@ -6,7 +6,18 @@ namespace CleanCoding.Controllers
 {
     public class CommentController : Controller
     {
-        private CleanCodingDB db = new CleanCodingDB();
+        //private CleanCodingDB db = new CleanCodingDB();
+        private ICleanCodingDB db;
+
+        public CommentController()
+        {
+            db = new CleanCodingDB();
+        }
+
+        public CommentController(ICleanCodingDB db)
+        {
+            this.db = db;
+        }
 
         //
         // GET: /Comment/

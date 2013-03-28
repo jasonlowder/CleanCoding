@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CleanCoding.Models
 {
-    interface Role
+    public interface Role
     {
+        PermisionCollection Permisions { get; set; }
+        string Description { get; set; }
+        User UserProfile { get; set; }
     }
 }
