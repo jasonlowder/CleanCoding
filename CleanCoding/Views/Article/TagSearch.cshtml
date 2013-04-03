@@ -1,7 +1,21 @@
-﻿@model CleanCoding.Models.ArticleListViewModel
+﻿@model IEnumerable<CleanCoding.Models.ArticleListViewModel>
 
-@{
-    ViewBag.Title = "TagSearch";
+<h1>Articles</h1>
+
+<form method="get">
+    <input type="search" name="searchTerm"/>
+    <input type="submit" value ="Search Articles" />
+</form>
+
+@foreach (var item in Model) 
+{
+    @Html.Partial("_ArticlePartial", item);
 }
 
-<h2>TagSearch</h2>
+@*@if (Roles.IsUserInRole("Administrator"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p> 
+}*@
+<p>@Html.ActionLink("Create New", "Create")</p>

@@ -13,13 +13,53 @@
     @if (Roles.IsUserInRole("Administrator"))
     {
         <p>
+            TAGS:
+             @{        
+                CleanCoding.Models.CleanCodingDB db = new CleanCoding.Models.CleanCodingDB();
+
+                var list =
+                        db.Tag
+                        .OrderBy(r => r.ID)
+                        .Where(r => r.ArticleID == Model.ArticleID)
+                        .Take(10);
+
+                CleanCoding.Models.Tag[] tags = list.ToArray();
+            }
+            @for (int i = 0; i < tags.Count(); i++)
+            {
+                @Html.Raw("<")
+                @Html.Raw(tags[i].word)   
+                @Html.Raw(">") 
+            }
+        </p>
+        <p>
             | @Html.ActionLink("Delete", "Delete", new { id = @Model.ArticleID }) |
             @Html.ActionLink("Edit", "Edit", new { id = @Model.ArticleID }) |
             @Html.ActionLink("Read More...", "ArticleFull", new {id = @Model.ArticleID}) |
         </p>   
     }
     else
-    {
+    {       
+        <h6 style="color: #51588d">
+            TAGS:
+            @{        
+                CleanCoding.Models.CleanCodingDB db = new CleanCoding.Models.CleanCodingDB();
+
+                var list =
+                        db.Tag
+                        .OrderBy(r => r.ID)
+                        .Where(r => r.ArticleID == Model.ArticleID)
+                        .Take(10);
+
+                CleanCoding.Models.Tag[] tags = list.ToArray();
+            }
+
+            @for (int i = 0; i < tags.Count(); i++)
+            {
+                @Html.ActionLink(" <" + tags[i].word + "> ", "TagSearch", new { searchTerm = tags[i].word })
+            }
+        </h6>
+        
         <p>
             @Html.ActionLink("Read More...", "ArticleFull", new {id = @Model.ArticleID})
         </p>        

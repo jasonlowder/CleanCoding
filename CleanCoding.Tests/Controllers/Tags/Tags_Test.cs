@@ -4,11 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CleanCoding.Tests.Controllers.Tags
 {
     [TestClass]
-    public class UnitTest1
+    public class Tags_Test
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
     }
 }

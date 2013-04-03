@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CleanCoding.Models;
+using System.Collections;
 
 namespace CleanCoding.Controllers
 {
@@ -36,10 +37,27 @@ namespace CleanCoding.Controllers
                         ArticleID = r.ArticleID,
                         Title = r.Title,
                         Body = r.Body,
+                        TagList = r.Tags,
                         CommentCount = r.Comments.Count()
                     });
 
             return View(model);
+        }
+
+        public ActionResult TagSearch(String searchTerm)
+        {
+            System.Diagnostics.Debug.WriteLine("Searching for: " +searchTerm);
+            var tags = new HashSet<int>(db.Query<Tag>().Where(t => t.word.Equals(searchTerm)).Select(t => t.ArticleID));
+            IQueryable<ArticleListViewModel> articles = db.Query<Article>().Where(p => tags.Contains(p.ArticleID)).Take(10).Select( p => new ArticleListViewModel
+                {
+                    ArticleID = p.ArticleID,
+                    Title = p.Title,
+                    Body = p.Body,
+                    TagList = p.Tags,
+                    CommentCount = p.Comments.Count()                    
+                });
+
+            return View(articles);
         }
 
         public ActionResult ArticleFull(int id)
@@ -65,19 +83,24 @@ namespace CleanCoding.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(Article article)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Articles.Add(article);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ArticleListViewModel article)
+        {
+            if (ModelState.IsValid)
+            {
+                // Need to parse out the tags here?
+                ArrayList articleTags = getTags(article.Tags);
 
-        //    return View(article);
-        //}
+                // Now need to put the ArticleListViewModel to an Article Model As well as the Tags returned from getTags into Tag Model objects
+
+              //db.Articles.Add(article);
+              //  db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(article);
+        }
 
         public ActionResult Edit(int id = 0)
         {
@@ -143,6 +166,19 @@ namespace CleanCoding.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        private ArrayList getTags(String tags)
+        {
+            string[] tagList = tags.Split(',');
+            ArrayList allTags = new ArrayList();
+
+            foreach (string tag in tagList)
+            {
+                allTags.Add(tagList);
+            }
+
+            return allTags;
         }
     }
 }

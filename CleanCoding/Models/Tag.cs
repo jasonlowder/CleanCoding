@@ -9,5 +9,6 @@ namespace CleanCoding.Models
     {
         public int ID { get; set; }
         public String word { get; set; }
+        public int ArticleID { get; set; }
     }
 }
