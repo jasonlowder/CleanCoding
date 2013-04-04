@@ -119,9 +119,7 @@ namespace CleanCoding.Controllers
             }
             return View(article);
         }
-
-        ////
-        //// POST: /Article/Edit/5
+        // HI
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
