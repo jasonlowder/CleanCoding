@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data;
 using System.Web.Mvc;
 using CleanCoding.Models;
 
@@ -11,7 +6,18 @@ namespace CleanCoding.Controllers
 {
     public class CommentController : Controller
     {
-        private CleanCodingDB db = new CleanCodingDB();
+        //private CleanCodingDB db = new CleanCodingDB();
+        private ICleanCodingDB db;
+
+        public CommentController()
+        {
+            db = new CleanCodingDB();
+        }
+
+        public CommentController(ICleanCodingDB db)
+        {
+            this.db = db;
+        }
 
         //
         // GET: /Comment/

@@ -11,10 +11,18 @@ namespace CleanCoding.Controllers
 {
     public class ArticleController : Controller
     {
-        private CleanCodingDB db = new CleanCodingDB();
+        //private CleanCodingDB db = new CleanCodingDB();
+        ICleanCodingDB db;
 
-        //
-        // GET: /Article/
+        public ArticleController()
+        {
+            db = new CleanCodingDB();
+        }
+
+        public ArticleController(ICleanCodingDB db)
+        {
+            this.db = db;
+        }
 
         public ActionResult Index(String searchTerm = null)
         {
@@ -36,60 +44,53 @@ namespace CleanCoding.Controllers
 
         public ActionResult ArticleFull(int id)
         {
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            var article = db.Articles
+                .Where(r => r.ArticleID == id)
+                .Select(r => new ArticleListViewModel
+                {
+                    ArticleID = r.ArticleID,
+                    Title = r.Title,
+                    Body = r.Body
+                });
+
+            if (!article.Any())
             {
-                return Index();
+                RedirectToAction("Index");
             }
-            article = db.Articles.Single(r => r.ArticleID == id);
-            return View(article);
+            return View(article.SingleOrDefault());
         }
-
-        //
-        // GET: /Article/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Article article = db.Articles.Find(id);
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-            return View(article);
-        }
-
-        //
-        // GET: /Article/Create
 
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Article/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Article article)
+        public ActionResult create(Article article)
         {
             if (ModelState.IsValid)
             {
                 db.Articles.Add(article);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("index");
             }
 
             return View(article);
         }
 
-        //
-        // GET: /Article/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            var article = db.Articles
+                .Where(r => r.ArticleID == id)
+                .Select(r => new ArticleListViewModel
+                {
+                    ArticleID = r.ArticleID,
+                    Title = r.Title,
+                    Body = r.Body
+                });
+
+            if (!article.Any())
             {
                 return HttpNotFound();
             }
