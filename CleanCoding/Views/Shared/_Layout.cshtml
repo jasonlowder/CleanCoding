@@ -10,15 +10,12 @@
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
+            <div class="content-wrapper">                
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
-                    <nav>
+                    <nav>                       
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -38,7 +35,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - C2KDB</p>
                 </div>
             </div>
         </footer>

@@ -236,6 +236,7 @@
     <Compile Include="Models\PermisionCollection.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -386,6 +387,7 @@
     <Content Include="Views\Comment\Create.cshtml" />
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Delete.cshtml" />
+    <Content Include="Views\Article\TagSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

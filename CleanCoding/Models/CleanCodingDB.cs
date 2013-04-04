@@ -31,12 +31,12 @@ namespace CleanCoding.Models
 
         public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tag { get; set; }
         
         public new void SaveChanges()
         {
             base.SaveChanges();
         }
-
 
         public System.Data.Entity.Infrastructure.DbEntityEntry Entry<T>(T entity) where T : class
         {
