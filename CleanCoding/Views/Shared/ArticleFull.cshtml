@@ -1,15 +1,32 @@
 ﻿@model CleanCoding.Models.ArticleListViewModel
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.Title);
+}
+@section featured {
+    <section class="featured">
+        @*<div class="float-right">
+            <img src="images/ChuckNorrisApproved.jpg" width="100" height="100" style="padding:15px; border:none" />
+        </div>*@
+
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
 
 <div class="articleFull" >
     <fieldset>
         <legend>ArticlesModel</legend>
         @Html.HiddenFor(model => model.ArticleID)
-        <div class="display-field">
+@*        <div class="display-field">
             <h3 style="text-align:center; text-decoration-line:underline;">@Html.DisplayFor(model => model.Title)</h3>
-        </div>
+        </div>*@
        <br />
         <div class="display-field">
-            @Html.DisplayFor(model => model.Body)
+            <h5>@Html.DisplayFor(model => model.Body)</h5>
         </div>
     </fieldset>
 
@@ -46,7 +63,7 @@
 @*    @if (Roles.IsUserInRole("Administrator"))
     {
         <p>
-        @Html.ActionLink("Comment", "Comment", "Comment");
+        @Html.ActionLink("Comment", "Comment", "Comment") |
         @Html.ActionLink("Edit", "Edit", new { id=Model.ArticleID }) |            
         @Html.ActionLink("Delete", "Delete", new { id=Model.ArticleID }) |
         @Html.ActionLink("Back to List", "Index")
@@ -67,7 +84,7 @@
             
     }*@
     <p>
-        @Html.ActionLink("Comment", "Create", "Comment");
+        @Html.ActionLink("Comment", "Create", "Comment") |
         @Html.ActionLink("Edit", "Edit", new { id=Model.ArticleID }) |            
         @Html.ActionLink("Delete", "Delete", new { id=Model.ArticleID }) |
         @Html.ActionLink("Back to List", "Index")

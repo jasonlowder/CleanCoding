@@ -1,36 +1,47 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Chuck is a Beast";
 }
 @section featured {
     <section class="featured">
+        <div class="float-right">
+            <img src="images/ChuckNorrisApproved.jpg" width="100" height="100" style="padding:15px; border:none" />
+        </div>
+
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-             <div class="float-left">
-                <img src="images/image2.png" style="margin-left:-350px; margin-top:-65px; margin-bottom:0px"/>
-            </div>
             <p>
                Clean Coding Knowledge Database.
             </p>
+           
         </div>
     </section>
 }
-<h3>To get started:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Sign Up</h5>
-        Just do it.
-    </li>
 
-    <li class="two">
-        <h5>Read Articles</h5>
-        They're good.
-    </li>
 
-    <li class="three">
-        <h5>Comment How Great They Are</h5>
-       We deserve it.
-    </li>
-</ol>
+<img src="images/image2.png" style="float:left; padding-right:15px" />
+
+
+
+<div style="float:left">
+    <h3>To get started:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Sign Up</h5>
+            Just do it.
+        </li>
+
+        <li class="two">
+            <h5>Read Articles</h5>
+            They're good.
+        </li>
+
+        <li class="three">
+            <h5>Comment How Great They Are</h5>
+            We deserve it.
+        </li>
+    </ol>
+    <p class="quote" style="float:left">"Chuck Norris is what Willis was talking about"</p>
+</div>

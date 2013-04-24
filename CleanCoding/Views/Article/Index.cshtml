@@ -1,11 +1,33 @@
 ﻿@model IEnumerable<CleanCoding.Models.ArticleListViewModel>
+@*<header class="content-wrapper">
+    <h1>Articles</h1>
 
-<h1>Articles</h1>
+    <form method="get">
+        <input type="search" name="searchTerm"/>
+        <input type="submit" value ="Search Articles" />
+    </form>
+</header>*@
+@{
+    ViewBag.Title = "Articles";
+}
+@section featured {
+    <section class="featured">
+        <div class="float-right">
+            <img src="images/ChuckNorrisApproved.jpg" width="100" height="100" style="padding:15px; border:none" />
+        </div>
 
-<form method="get">
-    <input type="search" name="searchTerm"/>
-    <input type="submit" value ="Search Articles" />
-</form>
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <form method="get">
+                <input type="search" name="searchTerm"/>
+                <input type="submit" value ="Search Articles" />
+            </form>
+        </div>
+    </section>
+}
 
 @foreach (var item in Model) 
 {

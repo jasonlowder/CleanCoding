@@ -1,10 +1,10 @@
 ﻿@model CleanCoding.Models.ArticleListViewModel
 
 <div class="article">
-    <h2>@Model.Title</h2>
-    <hr />
+    <h3>@Html.ActionLink(@Model.Title, "ArticleFull", new {id = @Model.ArticleID})</h3>
+                
     <p>@Model.Body</p>
-    <h6 style="color: #f00">Comments: @Model.CommentCount</h6>
+    <p style="color: #f00">Comments: @Model.CommentCount</p>
 
     @*<p>@Model.Body.Substring(0, @Model.Body.IndexOf(Environment.NewLine))</p>*@
 
@@ -40,7 +40,7 @@
     }
     else
     {       
-        <h6 style="color: #51588d">
+        <p style="color: #51588d">
             TAGS:
             @{        
                 CleanCoding.Models.CleanCodingDB db = new CleanCoding.Models.CleanCodingDB();
@@ -58,10 +58,12 @@
             {
                 @Html.ActionLink(" <" + tags[i].word + "> ", "TagSearch", new { searchTerm = tags[i].word })
             }
-        </h6>
+        </p>
         
-        <p>
+        @*<p>
             @Html.ActionLink("Read More...", "ArticleFull", new {id = @Model.ArticleID})
-        </p>        
+        </p>*@        
     }
+    <hr />
+
 </div>
